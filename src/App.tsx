@@ -1,8 +1,10 @@
 import MenuItem from "./components/MenuItem"
+import OtherContents from "./components/OtherContents"
 import { menuItems } from "./data/db"
+import useOrder from "./hooks/useOrders"
 
 function App() {
-  console.log(menuItems)
+  const {order, addItem} = useOrder()
 
   return (
     <>
@@ -19,14 +21,18 @@ function App() {
               <MenuItem
                 key={item.id}
                 item={item}
+                addItem={addItem}
               />
             ))}
           </div>
 
         </div>
 
-        <div>
-          <h2>Consumo</h2>
+        <div className="border border-dashed border-slate-300 p-5 rounded-lg space-y-10">
+            <OtherContents
+              order={order}
+
+            />
         </div>
       </main>
     </>
